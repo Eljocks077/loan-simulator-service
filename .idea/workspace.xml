@@ -4,11 +4,54 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="baa28a0c-dfa2-422d-9311-bfa636994e77" name="Changes" comment="" />
+    <list default="true" id="baa28a0c-dfa2-422d-9311-bfa636994e77" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/loan/exception/GlobalExceptionHandler.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/loan/exception/LoanSimulationException.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/loan/model/LoanSimulationRequest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/loan/service/LoanSimulatorService.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/service/loan/service/impl/LoanSimulatorServiceImpl.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/service/loansimulator/service/LoanSimulatorServiceImplTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/LoanSimulatorServiceApplication.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/controller/LoanSimulatorController.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/exception/GlobalExceptionHandler.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/model/LoanSimulationRequest$LoanSimulationRequestBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/model/LoanSimulationRequest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/model/LoanSimulationResponse$LoanSimulationResponseBuilder.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/model/LoanSimulationResponse.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/service/LoanSimulatorService.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/classes/service/loan/service/impl/LoanSimulatorServiceImpl.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/loan-simulator-service-0.0.1-SNAPSHOT.jar" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/loan-simulator-service-0.0.1-SNAPSHOT.jar.original" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-archiver/pom.properties" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/createdFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/testCompile/default-testCompile/inputFiles.lst" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-service.loansimulator.controller.GlobalExceptionHandlerTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/TEST-service.loansimulator.service.LoanSimulatorServiceImplTest.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/service.loansimulator.controller.GlobalExceptionHandlerTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/surefire-reports/service.loansimulator.service.LoanSimulatorServiceImplTest.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/service/loansimulator/controller/GlobalExceptionHandlerTest.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/target/test-classes/service/loansimulator/service/LoanSimulatorServiceImplTest.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/loan/exception/GlobalExceptionHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/loan/exception/LoanSimulationException.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/service/loan/exception/LoanSimulationException.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/loan/model/LoanSimulationRequest.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/service/loan/service/LoanSimulatorService.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/loansimulator/controller/GlobalExceptionHandlerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/loansimulator/controller/GlobalExceptionHandlerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/loansimulator/controller/LoanSimulatorControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/service/loansimulator/controller/LoanSimulatorControllerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/service/loansimulator/service/LoanSimulatorServiceTest.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/application.yml" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/application.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/createdFiles.lst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" beforeDir="false" afterPath="$PROJECT_DIR$/target/maven-status/maven-compiler-plugin/compile/default-compile/inputFiles.lst" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 2
@@ -18,29 +61,47 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RequestMappingsPanelOrder0&quot;: &quot;0&quot;,
-    &quot;RequestMappingsPanelOrder1&quot;: &quot;1&quot;,
-    &quot;RequestMappingsPanelWidth0&quot;: &quot;75&quot;,
-    &quot;RequestMappingsPanelWidth1&quot;: &quot;75&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;Spring Boot.LoanSimulatorServiceApplication.executor&quot;: &quot;Run&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;/Users/matheus/Documents/loan-simulator-service&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.lookFeel&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "JUnit.LoanSimulatorServiceImplTest.validateRequest_LoanAmountZero_ThrowsException.executor": "Run",
+    "RequestMappingsPanelOrder0": "0",
+    "RequestMappingsPanelOrder1": "1",
+    "RequestMappingsPanelWidth0": "75",
+    "RequestMappingsPanelWidth1": "75",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "Spring Boot.LoanSimulatorServiceApplication.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/matheus/Documents/loan-simulator-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.lookFeel",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Spring Boot.LoanSimulatorServiceApplication">
+}]]></component>
+  <component name="RunManager" selected="JUnit.LoanSimulatorServiceImplTest.validateRequest_LoanAmountZero_ThrowsException">
+    <configuration name="LoanSimulatorServiceImplTest.validateRequest_LoanAmountZero_ThrowsException" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="loan-simulator-service" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="service.loansimulator.service.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="service.loansimulator.service" />
+      <option name="MAIN_CLASS_NAME" value="service.loansimulator.service.LoanSimulatorServiceImplTest" />
+      <option name="METHOD_NAME" value="validateRequest_LoanAmountZero_ThrowsException" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="App" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
       <module name="loan-simulator-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" />
@@ -49,6 +110,8 @@
       </method>
     </configuration>
     <configuration name="LoanSimulatorServiceApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" temporary="true" nameIsGenerated="true">
+      <option name="ALTERNATIVE_JRE_PATH" value="ms-21" />
+      <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="true" />
       <module name="loan-simulator-service" />
       <option name="SPRING_BOOT_MAIN_CLASS" value="service.loan.LoanSimulatorServiceApplication" />
       <extension name="coverage">
@@ -62,11 +125,13 @@
       </method>
     </configuration>
     <list>
+      <item itemvalue="JUnit.LoanSimulatorServiceImplTest.validateRequest_LoanAmountZero_ThrowsException" />
       <item itemvalue="Spring Boot.App" />
       <item itemvalue="Spring Boot.LoanSimulatorServiceApplication" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.LoanSimulatorServiceImplTest.validateRequest_LoanAmountZero_ThrowsException" />
         <item itemvalue="Spring Boot.LoanSimulatorServiceApplication" />
       </list>
     </recent_temporary>
@@ -91,6 +156,8 @@
       <workItem from="1751413902677" duration="1501000" />
       <workItem from="1751505520756" duration="2000" />
       <workItem from="1751506146804" duration="6000" />
+      <workItem from="1751571567571" duration="11000" />
+      <workItem from="1751571626144" duration="1418000" />
     </task>
     <servers />
   </component>
