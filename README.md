@@ -1,14 +1,145 @@
-# Sistema de Simulação de Empréstimos - Documentação Técnica
+# Loan Simulator Service
+
+Este é um serviço Spring Boot para simulação de empréstimos.
+
+## Estrutura do Projeto
+
+O projeto segue a arquitetura MVC (Model-View-Controller) com a seguinte estrutura de diretórios:
+
+```
+src/
+  main/
+    java/
+      service/loansimulator/
+        controller/    # Controladores REST
+        model/        # Classes de modelo e DTOs
+        service/      # Lógica de negócios
+        exception/    # Tratamento de exceções
+    resources/        # Arquivos de configuração
+  test/
+    java/
+      service/loansimulator/
+        controller/   # Testes dos controladores
+        service/      # Testes dos serviços
+```
+
+## Tecnologias
+
+- Java 21
+- Spring Boot 3.2.3
+- SpringDoc OpenAPI (Swagger)
+- Resilience4j
+- Lombok
+- Maven
+
+## Como Executar
+
+1. Certifique-se de ter o Java 21 instalado
+2. Execute o comando: `mvn spring-boot:run`
+3. Acesse a documentação da API: `http://localhost:8080/swagger-ui.html`
+
+## API Documentation
+
+### Simulate Loan
+
+**Endpoint:** POST `/api/v1/loan-simulator/simulate`
+
+**Request Body:**
+```json
+{
+  "loanAmount": 10000.00,
+  "paymentTermInMonths": 12,
+  "birthDate": "1990-01-01"
+}
+```
+
+**Response:**
+```json
+{
+  "totalAmount": 10150.00,
+  "monthlyPayment": 845.83,
+  "totalInterest": 150.00,
+  "annualInterestRate": 3.00
+}
+```
+
+### Interest Rates
+
+As taxas de juros são determinadas pela idade do cliente:
+- Até 25 anos: 5% ao ano
+- 26 a 40 anos: 3% ao ano
+- 41 a 60 anos: 2% ao ano
+- Acima de 60 anos: 4% ao ano
+
+## Testing
+
+O projeto inclui cobertura abrangente de testes usando frameworks modernos:
+
+### Test Stack
+- JUnit 5 para execução e gerenciamento do ciclo de vida dos testes
+- AssertJ para assertions fluentes
+- Mockito para mock de dependências
+- Spring Test para testes de integração
+
+### Categorias de Testes
+1. **Service Tests** (`LoanSimulatorServiceTest`):
+   - Precisão dos cálculos
+   - Determinação da taxa de juros
+   - Validação de entrada
+   - Casos de borda
+
+2. **Controller Tests** (`LoanSimulatorControllerTest`):
+   - Validação de requisições
+   - Mapeamento de respostas
+   - Códigos de status HTTP
+   - Cenários de erro
+
+3. **Exception Handler Tests** (`GlobalExceptionHandlerTest`):
+   - Exceções customizadas
+   - Erros de validação
+   - Rate limiting
+   - Erros genéricos
+
+### Executando os Testes
+
+Execute todos os testes com:
+```bash
+mvn test
+```
+
+Gere o relatório de cobertura de testes:
+```bash
+mvn verify
+```
+
+O relatório de cobertura estará disponível em: `target/site/jacoco/index.html`
+
+## Requirements
+
+- Java 21
+- Maven
+
+## Setup
+
+1. Clone o repositório
+2. Build do projeto:
+```bash
+mvn clean install
+```
+3. Execute a aplicação:
+```bash
+mvn spring-boot:run
+```
+
+A aplicação iniciará na porta 8080.
 
 ## Visão Geral da Arquitetura
 
 O sistema foi projetado utilizando uma arquitetura em camadas (layered architecture) com padrões de microsserviços, garantindo escalabilidade e facilidade de manutenção.
 
-## 1. Desenho da Arquitetura
+### Desenho da Arquitetura
 
 ![Arquitetura do Sistema](docs/images/architecture.png)
-
-### i. Arquitetura do Sistema
 
 #### Componentes e Interações:
 
@@ -37,6 +168,9 @@ O sistema foi projetado utilizando uma arquitetura em camadas (layered architect
 - Fluxo Assíncrono: Envia para AWS SQS quando excede limites do rate limiter
 - Consome mensagens da fila para simulação assíncrona
 - Notifica conclusão via SNS
+- Processamento paralelo de cálculos complexos
+- Otimização de performance com Virtual Threads (Java 21)
+- Cache inteligente de resultados frequentes
 
 ##### Data Layer
 - PostgreSQL: dados transacionais e histórico de simulações
@@ -47,7 +181,7 @@ O sistema foi projetado utilizando uma arquitetura em camadas (layered architect
 - Envia notificações sobre finalização de simulação assíncrona
 - Integração com frontend para atualização em tempo real
 
-### ii. Justificativas Tecnológicas
+### Justificativas Tecnológicas
 
 #### Frontend - React
 - Virtual DOM e componentização para manutenção
@@ -78,24 +212,24 @@ O sistema foi projetado utilizando uma arquitetura em camadas (layered architect
 - Notificações multi-canal e assíncronas
 - Integração com múltiplos protocolos
 
-## 2. Padrões de Projeto e Boas Práticas
+### Padrões de Projeto e Boas Práticas
 
-### i. Padrões Arquiteturais
+#### Padrões Arquiteturais
 - Rate Limiter Pattern: Controla fluxo de requisições e previne sobrecarga
 - BFF (Backend for Frontend): Agrega dados de múltiplos serviços
 - CQRS Simplificado: Comando e leitura separados (PostgreSQL e Redis)
 - Repository Pattern: Abstração do acesso aos dados
 - Observer Pattern: Para notificações assíncronas
 
-### ii. Estratégia de Rate Limiting
+#### Estratégia de Rate Limiting
 
-#### Configuração do Rate Limiter:
+##### Configuração do Rate Limiter:
 - Limite por usuário: 10 requisições/minuto
 - Limite global: 1000 requisições/minuto
 - Threshold para processamento assíncrono: 80% da capacidade
 - Algoritmo: Token Bucket com refill rate configurável
 
-#### Lógica de Decisão:
+##### Lógica de Decisão:
 ```java
 if (current_load < sync_threshold && tokens_available) {
     process_synchronously()
@@ -104,13 +238,15 @@ if (current_load < sync_threshold && tokens_available) {
 }
 ```
 
-### iii. Autenticação e Autorização
+#### Autenticação e Autorização
 - JWT para autenticação
 - RBAC (Role-Based Access Control) para permissões
 - Integração com AWS Cognito ou OAuth
 - Rate limiting por nível de usuário (premium vs standard)
 
-## 3. Considerações de Escalabilidade
+### Considerações de Escalabilidade e Performance
+
+#### Escalabilidade
 - Rate Limiter distribuído usando Redis para coordenação
 - SQS para desacoplar processos e absorver picos de carga
 - Auto scaling nos serviços de backend baseado em métricas
@@ -118,49 +254,27 @@ if (current_load < sync_threshold && tokens_available) {
 - Horizontal scaling com load balancers
 - Database sharding para grandes volumes
 
-## 4. API Design
+#### Otimização de Performance
+- Processamento paralelo para cálculos complexos
+- Uso de Virtual Threads (Java 21) para operações I/O
+- Cache inteligente com políticas de invalidação
+- Computação assíncrona de taxas de juros
+- Cálculo paralelo de valores de pagamento
+- Operações não-bloqueantes quando possível
+- Bulk processing para múltiplas simulações
+- Warm-up do cache em horários de pico
 
-### i. Endpoints
+## Recursos de Resiliência
 
-#### Simulação Síncrona/Assíncrona:
-```http
-POST /api/v1/loan/simulate
-Content-Type: application/json
+A aplicação inclui diversos padrões de resiliência:
 
-{
-  "amount": 10000,
-  "birthDate": "1990-01-01",
-  "term": 12,
-  "preferAsync": false
-}
+1. **Circuit Breaker**: Previne sobrecarga do sistema
+2. **Rate Limiting**: Controla taxa de requisições
+3. **Bulkhead**: Isola falhas
+4. **Retry**: Lida com falhas transitórias
+
+Monitore esses recursos através dos endpoints do actuator:
 ```
-
-#### Resposta Síncrona:
-```json
-{
-  "requestId": "uuid-123",
-  "type": "sync",
-  "result": {
-    "monthlyPayment": 858.75,
-    "totalPayment": 10305.0,
-    "totalInterest": 305.0,
-    "interestRate": "3%"
-  }
-}
-```
-
-#### Resposta Assíncrona:
-```json
-{
-  "requestId": "uuid-456",
-  "type": "async",
-  "status": "queued",
-  "estimatedCompletion": "2025-07-03T10:30:00Z",
-  "message": "Simulação em processamento. Você será notificado quando concluída."
-}
-```
-
-#### Consulta de Status:
-```http
-GET /api/v1/loan/simulate/{requestId}/status
+http://localhost:8080/actuator/health
+http://localhost:8080/actuator/metrics
 ``` 
