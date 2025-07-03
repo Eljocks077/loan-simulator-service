@@ -1,0 +1,124 @@
+openapi: 3.0.3
+info:
+  title: Loan Simulator API
+  description: API for simulating loans with different parameters and interest rates
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080
+    description: Local development server
+
+paths:
+  /api/v1/loan-simulator/simulate:
+    post:
+      summary: Simulate a loan
+      description: |
+        Simulates a loan based on the provided parameters.
+        The interest rate is determined by the client's age:
+        - Up to 25 years: 5% per year
+        - 26 to 40 years: 3% per year
+        - 41 to 60 years: 2% per year
+        - Above 60 years: 4% per year
+      operationId: simulateLoan
+      tags:
+        - Loan Simulator
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LoanSimulationRequest'
+      responses:
+        '200':
+          description: Successful simulation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LoanSimulationResponse'
+        '400':
+          description: Invalid request parameters
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '429':
+          description: Too many requests
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '500':
+          description: Internal server error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+
+components:
+  schemas:
+    LoanSimulationRequest:
+      type: object
+      required:
+        - loanAmount
+        - birthDate
+        - paymentTermInMonths
+      properties:
+        loanAmount:
+          type: number
+          format: double
+          minimum: 0
+          example: 10000.00
+          description: The amount of money to be borrowed
+        birthDate:
+          type: string
+          format: date
+          example: "1990-01-01"
+          description: The client's date of birth
+        paymentTermInMonths:
+          type: integer
+          minimum: 1
+          example: 12
+          description: The loan term in months
+    
+    LoanSimulationResponse:
+      type: object
+      properties:
+        totalAmount:
+          type: number
+          format: double
+          example: 10150.00
+          description: The total amount to be paid including interest
+        monthlyPayment:
+          type: number
+          format: double
+          example: 845.83
+          description: The monthly payment amount
+        totalInterest:
+          type: number
+          format: double
+          example: 150.00
+          description: The total interest to be paid
+        annualInterestRate:
+          type: number
+          format: double
+          example: 3.00
+          description: The annual interest rate applied (in percentage)
+    
+    ErrorResponse:
+      type: object
+      properties:
+        timestamp:
+          type: string
+          format: date-time
+          example: "2024-03-20T10:30:00Z"
+        status:
+          type: integer
+          example: 400
+        error:
+          type: string
+          example: "Bad Request"
+        message:
+          type: string
+          example: "Invalid loan amount"
+        path:
+          type: string
+          example: "/api/v1/loan-simulator/simulate" 

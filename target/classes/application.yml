@@ -1,0 +1,48 @@
+server:
+  port: 8080
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /api-docs
+
+resilience4j:
+  circuitbreaker:
+    instances:
+      loanSimulation:
+        slidingWindowSize: 10
+        failureRateThreshold: 50
+        waitDurationInOpenState: 5000
+        permittedNumberOfCallsInHalfOpenState: 3
+        automaticTransitionFromOpenToHalfOpenEnabled: true
+  
+  bulkhead:
+    instances:
+      loanSimulation:
+        maxConcurrentCalls: 10
+        maxWaitDuration: 500ms
+  
+  ratelimiter:
+    instances:
+      loanSimulation:
+        limitForPeriod: 50
+        limitRefreshPeriod: 1s
+        timeoutDuration: 500ms
+  
+  retry:
+    instances:
+      loanSimulation:
+        maxAttempts: 3
+        waitDuration: 100ms
+        enableExponentialBackoff: true
+        exponentialBackoffMultiplier: 2
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,metrics,info,circuitbreakers,bulkheads,ratelimiters,retries
+  endpoint:
+    health:
+      show-details: always 
